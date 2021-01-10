@@ -1,23 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Button, FormControl, InputLabel, Input } from "@material-ui/core";
+import { useState, useEffect } from "react";
+import Todo from './Todo'
+import firebase from 'firebase';
+import db from './firebase';
 
 function App() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState("");
+
+// When the app loads, we need to listen to database and fetch new todos as they get added/removed....
+
+useEffect(() => {
+    // This code fires when the app.js loads 
+    db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+      setTodos(snapshot.docs.map(doc => ({id: doc.id, todo: doc.data().todo})))
+    })
+  }, []
+  ); 
+
+  const addTodo = (event) => {
+    // This will fire off when we click the button
+    event.preventDefault(); // this will prevent page on loading after press submit button
+
+    db.collection('todos').add({
+      todo: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+
+
+    setInput(""); // this will clear the input field after hitting submit button
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h1> 🚀 hello world 🔫 </h1>
+
+      <form>
+        <FormControl>
+          <InputLabel>Write Todo...</InputLabel>
+          <Input
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+          />
+        </FormControl>
+
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          onClick={addTodo}
+          disabled={!input}
         >
-          Learn React
-        </a>
-      </header>
+          Add Todo
+        </Button>
+      </form>
+      <ul className="list__ul">
+        {todos.map((todo) => {
+          return <Todo todo={todo}/>
+        })}
+      </ul>
     </div>
   );
 }

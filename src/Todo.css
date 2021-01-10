@@ -1,0 +1,22 @@
+.todo__list {
+    display: flex;
+    border: 2px solid black;
+    width: 60%;
+    /* text-align: center; */
+}
+
+.input__todo {
+    flex: 1;
+    white-space: wrap;    
+}
+
+.edit__todo {
+    flex: .1;
+    align-self: center;
+}
+
+.delete__todo {
+    flex: .1;
+    align-self: center;
+
+}

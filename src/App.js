@@ -34,26 +34,32 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <h1> 🚀 hello world 🔫 </h1>
+      <h1 style={{ fontFamily: '"Hachi Maru Pop", cursive'}}> Todo App </h1>
 
-      <form>
-        <FormControl>
-          <InputLabel>Write Todo...</InputLabel>
+      <form className="form">
+        <div className="form__control">
+
+        <FormControl >
+          <InputLabel className="inputlabel">Write Todo...</InputLabel>
           <Input
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
         </FormControl>
+        </div>
 
+    <div className="btn">
         <Button
+        color="primary"
           variant="contained"
-          color="primary"
           type="submit"
           onClick={addTodo}
           disabled={!input}
         >
           Add Todo
         </Button>
+
+    </div>
       </form>
       <ul className="list__ul">
         {todos.map((todo) => {

@@ -1,9 +1,10 @@
 {
   "name": "todo_app",
-  "homepage": "https://shekhawatprateek.github.io/NetflixClone",
+  "homepage": "https://shekhawatprateek.github.io/TodoAppWithFirebase",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",

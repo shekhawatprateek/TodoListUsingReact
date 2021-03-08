@@ -1,6 +1,6 @@
 {
   "name": "todo_app",
-  "homepage": "https://shekhawatprateek.github.io/TodoAppWithFirebase",
+  "homepage": "https://shekhawatprateek.github.io/TodoListUsingReact",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
